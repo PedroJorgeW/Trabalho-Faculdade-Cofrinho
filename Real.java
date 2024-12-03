@@ -6,7 +6,14 @@ public class Real extends Moeda {
     }
 
     @Override
-    public void info() {
+    double converterMoeda() {
+        return valor;
+    }
+
+    public Real() {
+        super();
+    }
 
     }
-}
+
+

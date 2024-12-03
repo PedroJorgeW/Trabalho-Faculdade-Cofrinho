@@ -6,7 +6,13 @@ public class Dolar extends Moeda{
     }
 
     @Override
-    public void info() {
-
+    double converterMoeda() {
+        return valor * 6.06;
     }
+
+
+    public Dolar() {
+    }
+
+
 }

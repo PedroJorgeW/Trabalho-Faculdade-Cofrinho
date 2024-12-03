@@ -5,8 +5,16 @@ public class Euro extends Moeda {
         super(valor);
     }
 
-    @Override
-    public void info() {
+        @Override
+        double converterMoeda() {
+            return valor * 6.36;
+        }
+
+
+        public Euro() {
+        super();
+    }
+
 
     }
-}
+
