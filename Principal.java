@@ -3,13 +3,20 @@ import java.util.Scanner;
 
 
 public class Principal {
-
     public static void main(String[] args) {
-
         Scanner teclado = new Scanner(System.in);
         int opcao;
-       // Moeda moeda = new Moeda()
+        int tipoMoeda = 0;
+        double euro;
+        double dolar;
+        double reais;
 
+        Moeda moeda = new Moeda() {
+            @Override
+            double converterMoeda() {
+                return valor;
+            }
+        };
 
         System.out.println("Menu");
         System.out.println("1- Depositar");
@@ -17,61 +24,90 @@ public class Principal {
         System.out.println("3 -Lista");
         System.out.println("4 - Encerrar");
         opcao = teclado.nextInt();
-        while (opcao > 0 && opcao < 4) {
+
+        while (opcao != 0) {
             switch (opcao) {
                 case 1:
-                    int tipoMoeda = 0;
-                    while (tipoMoeda > 0 || tipoMoeda <= 4) {
+                    while (tipoMoeda > 3 || tipoMoeda <= 0) {
                         System.out.println("Menu");
                         System.out.println("1- Euro");
                         System.out.println("2- Dolar");
                         System.out.println("3 - Real");
                         tipoMoeda = teclado.nextInt();
 
-                        Moeda mod;
+                        Moeda mod = null;
 
                         if (tipoMoeda == 1) {
                             System.out.println("Quanto deseja depositar em Euros?");
-                            int euro = teclado.nextInt();
+                            euro = teclado.nextInt();
                             mod = new Euro();
                         }
 
-                            if (tipoMoeda == 2) {
-                                System.out.println("Quanto deseja depositar em Dolar?");
-                                int dolar = teclado.nextInt();
-                                mod = new Dolar();
-                            }
-
-                                if (tipoMoeda == 3) {
-                                    System.out.println("Quanto deseja depositar em Reais?");
-                                    int reais = teclado.nextInt();
-                                    mod = new Real();
-
+                        if (tipoMoeda == 2) {
+                            System.out.println("Quanto deseja depositar em Dolar?");
+                            dolar = teclado.nextInt();
+                            mod = new Dolar();
                         }
 
+                        if (tipoMoeda == 3) {
+                            System.out.println("Quanto deseja depositar em Reais?");
+                            reais = teclado.nextInt();
+                            mod = new Real();
+
+                        }
+                        moeda.adicionar(mod);
+                        break;
                     }
 
 
-                    break;
                 case 2:
-                    // remover
-                    break;
-                case 3:
-                    // lista
-                default:
-                    System.out.println("Opção invalida");
-            }
 
-            System.out.println("Menu");
-            System.out.println("1- Adicionar uma moeda");
-            System.out.println("2- Remover uma moeda");
-            System.out.println("3 -Lista de moedas");
-            System.out.println("4 - Encerrar");
+                    while (tipoMoeda > 3 || tipoMoeda <= 0) {
+                        System.out.println("Menu");
+                        System.out.println("1- Euro");
+                        System.out.println("2- Dolar");
+                        System.out.println("3 - Real");
+                        tipoMoeda = teclado.nextInt();
 
-            }
+                        Moeda mod = null;
+
+                        if (tipoMoeda == 1) {
+                            System.out.println("Quanto deseja sacar em Euros?");
+                            euro = teclado.nextInt();
+                            mod = new Euro();
+                        }
+
+                        if (tipoMoeda == 2) {
+                            System.out.println("Quanto deseja sacar em Dolar?");
+                            dolar = teclado.nextInt();
+                            mod = new Dolar();
+                        }
+
+                        if (tipoMoeda == 3) {
+                            System.out.println("Quanto deseja sacar em Reais?");
+                            reais = teclado.nextInt();
+                            mod = new Real();
+
+                            moeda.remover(mod);
+
+                            break;
+                        }
+                    }
+                            case 3:
+                                moeda.listar();
+                            default:
+                                System.out.println("Opção invalida");
+                                return;
+
+                        }
+                    }
 
             }
         }
+
+
+
+
 
 
 

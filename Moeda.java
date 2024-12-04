@@ -1,10 +1,12 @@
 package TrabalhoFaculdade;
 import java.util.ArrayList;
+import java.util.Objects;
 
 
 abstract public class Moeda {
     double valor;
-    double valorTotal = 0;
+
+
 
     public Moeda(){
 
@@ -33,17 +35,34 @@ abstract public class Moeda {
 
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Moeda moeda = (Moeda) o;
+        return Double.compare(valor, moeda.valor) == 0 && Objects.equals(listaMoeda, moeda.listaMoeda);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(valor, listaMoeda);
+    }
+
     public void listar() {
 
         for (Moeda m : listaMoeda) {
-            System.out.println("Valor Total: " + valorTotal);
-
+            System.out.println("Valor Total: " + valor);
         }
 
-        }
 
+
+
+
+        }
         abstract double converterMoeda();
         }
+
+
 
 
 
