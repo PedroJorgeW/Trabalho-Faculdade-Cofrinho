@@ -1,66 +1,52 @@
 package TrabalhoFaculdade;
-import java.util.ArrayList;
+
+
 import java.util.Objects;
 
-
 abstract public class Moeda {
-    double valor;
-
-
-
-    public Moeda(){
-
-    }
+   protected double valor;
 
     public Moeda(double valor) {
         this.valor = valor;
-    }
-
-    ArrayList<Moeda> listaMoeda = new ArrayList<>();
-
-
-    public void adicionar(Moeda m) {
-        Euro addMoedaEuro = new Euro();
-        listaMoeda.add(addMoedaEuro);
-
-        Dolar addMoedaDolar = new Dolar();
-        listaMoeda.add(addMoedaDolar);
-
-        Real addMoedaReal = new Real();
-        listaMoeda.add(addMoedaReal);
 
     }
-
-    public void remover(Moeda m) {
-
-    }
-
+        public double getValor() {
+            return valor;
+        }
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Moeda moeda = (Moeda) o;
-        return Double.compare(valor, moeda.valor) == 0 && Objects.equals(listaMoeda, moeda.listaMoeda);
+        return Double.compare(valor, moeda.valor) == 0;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(valor, listaMoeda);
+        return Objects.hashCode(valor);
     }
 
-    public void listar() {
+    // Conversão para Real
+    public abstract double converterMoeda();
 
-        for (Moeda m : listaMoeda) {
-            System.out.println("Valor Total: " + valor);
-        }
+    public String info() {
+        return this.toString();
+    }
+
+    @Override
+    public String toString() {
+        return "Valor: " + valor;
+    }
+}
 
 
 
 
 
-        }
-        abstract double converterMoeda();
-        }
+
+
+
+
 
 
 
